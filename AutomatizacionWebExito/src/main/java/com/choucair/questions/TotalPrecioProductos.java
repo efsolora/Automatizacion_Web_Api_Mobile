@@ -6,7 +6,6 @@ import net.serenitybdd.screenplay.Question;
 import static com.choucair.ui.PaginaCarrito.VALOR_TOTAL;
 
 public class TotalPrecioProductos implements Question<String> {
-    private int total;
 
     @Override
     public String answeredBy(Actor actor) {
