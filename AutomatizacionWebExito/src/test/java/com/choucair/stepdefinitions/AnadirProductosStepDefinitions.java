@@ -87,13 +87,13 @@ public class AnadirProductosStepDefinitions extends Configuracion {
                 suma = Integer.parseInt(precioDelProducto.get(i).substring(2).replace(".",""))*Integer.parseInt(cantidadDelProducto.get(i))+suma;
                 cantidad += Integer.parseInt(cantidadDelProducto.get(i));
                 theActorInTheSpotlight().should(
-                        //seeThat(nombreProducto().withThePosition(i+1), equalTo(nombreDelProducto.get(i))),
-                        //seeThat(cantidadProducto().withThePosition(i+1), equalTo(cantidadDelProducto.get(i)))
+                        seeThat(nombreProducto().withThePosition(i+1), equalTo(nombreDelProducto.get(i))),
+                        seeThat(cantidadProducto().withThePosition(i+1), equalTo(cantidadDelProducto.get(i)))
                         );
             }
             theActorInTheSpotlight().should(
-                    //seeThat(totalPrecioProductos(),equalTo(suma+"")),
-                    //seeThat(totalProductos(),equalTo(cantidad+""))
+                    seeThat(totalPrecioProductos(),equalTo(suma+"")),
+                    seeThat(totalProductos(),equalTo(cantidad+""))
             );
 
 
