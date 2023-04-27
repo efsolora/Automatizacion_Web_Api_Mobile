@@ -33,6 +33,7 @@ La automatización de pruebas para la tecnología móvil utiliza Java 8 como len
 
 ## Requisitos de Ejecución
 
-Se recomienda usar Java 8 para la automatización móvil y Java 11 para las automatizaciones web y de APIs.
+- Se recomienda usar Java 8 para la automatización móvil y Java 11 para las automatizaciones web y de APIs.
+- la automatizacion web se ejecuta en Microsoft edge.
 
 *By: James Muñoz*
