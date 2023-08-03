@@ -18,29 +18,20 @@ public class AgregarProductosAleatorios implements Task {
 
         for (int i = 0; i < 5; i++) {
             try {
-                Thread.sleep(8000);
+                Thread.sleep(15000);
             } catch (Exception e) {
             }
             Target target = productoAleatorio(actor);
             actor.attemptsTo(
                     Scroll.to(target),
-                    Check.whether(target.resolveFor(actor).isVisible()).andIfSo(
                             JavaScriptClick.on(target),
                             JavaScriptClick.on(AGREGAR)
-                    ).otherwise(
-                            Click.on(target),
-                            Click.on(AGREGAR)
-                    )
             );
             Random random = new Random();
-            int cantidadAleatorio = random.nextInt(9) + 1;
+            int cantidadAleatorio = random.nextInt(2) + 1;
             for (int j = 0; j < cantidadAleatorio; j++) {
                 actor.attemptsTo(
-                        Check.whether(target.resolveFor(actor).isVisible()).andIfSo(
                                 JavaScriptClick.on(CANTIDAD)
-                        ).otherwise(
-                                Click.on(CANTIDAD)
-                        )
                 );
             }
             cantidadDelProducto.add(CANTIDAD_PRODUCTO.resolveFor(actor).getText().trim().substring(0,1));
@@ -48,11 +39,6 @@ public class AgregarProductosAleatorios implements Task {
                     Click.on(CONTINUAR_COMPRANDO)
 
             );
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
         }
 
     }

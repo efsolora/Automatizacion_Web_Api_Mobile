@@ -35,9 +35,10 @@ public class Configuracion {
     }
 
     private void configurarDriver() {
-        EdgeOptions co = new EdgeOptions();
-        WebDriverManager.edgedriver().setup();
-        webDriver = new EdgeDriver(co);
+        ChromeOptions co = new ChromeOptions();
+        co.addArguments("--force-device-scale-factor=0.9"); // Agregar el argumento
+        WebDriverManager.chromedriver().setup();
+        webDriver = new ChromeDriver(co);
     }
 
 

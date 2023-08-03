@@ -9,11 +9,20 @@ public class PaginaCarrito extends PageObject {
             .located(By.xpath("(//div[@class='totalItems'])"));
 
     public static final Target VALOR_TOTAL = Target.the("valor total del precio")
-            .located(By.xpath("(//td[@class='monetary exito-checkout-monetary'])"));
+            .located(By.xpath("(//span[@data-molecule-summary-item-value='true'])[2]"));
+
+    public static final Target CAMPO_CORREO=Target.
+            the("Campo del correo electronico")
+            .located(By.xpath("//input[@placeholder='correo@email.com']"));
+
+    public static final Target CONFIRMAR_CORREO=Target.
+            the("")
+            .located(By.xpath("//button[normalize-space()='Confirmar']"));
 
     public static Target nombreProductoCarrito(int posicion){
+        posicion+=1;
         Target nombreCarrito = Target.the("nombre de los productos")
-                .located(By.xpath("(//a[@class='exito-checkout-product-name'])["+ posicion +"]"));
+                .located(By.xpath("(//span[@data-molecule-product-detail-name-span='true'])["+ posicion +"]"));
         return nombreCarrito;
     }
     public static Target cantidadCarrito (int posicion) {

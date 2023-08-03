@@ -4,6 +4,5 @@ Feature: Compra de productos en Almacen Exito
 
   Scenario: anadir productos aleatorios de una categoria al carrito
     Given Given que estoy en la pagina de exito
-    When he iniciado sesion con mis credenciales
     And he agregado los productos al carrito
     Then se deberian ver los productos en el carrito coinciden con los productos agregados

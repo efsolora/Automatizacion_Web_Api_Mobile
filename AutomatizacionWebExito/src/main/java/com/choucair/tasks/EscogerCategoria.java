@@ -19,12 +19,6 @@ public class EscogerCategoria implements Task {
                 Click.on(CATEGORIA),
                 Click.on(CABECEROS)
         );
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
     }
 
     public static EscogerCategoria escogerCategoria() {

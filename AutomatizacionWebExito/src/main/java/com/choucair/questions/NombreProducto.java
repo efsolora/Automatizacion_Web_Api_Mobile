@@ -11,7 +11,7 @@ public class NombreProducto implements Question<String> {
     @Override
     public String answeredBy(Actor actor) {
 
-        return nombreProductoCarrito(nombre).resolveFor(actor).getText().trim();
+        return nombreProductoCarrito(nombre).resolveFor(actor).getText();
     }
 
     public NombreProducto withThePosition(int nombre){
