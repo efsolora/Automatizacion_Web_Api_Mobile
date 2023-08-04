@@ -12,12 +12,11 @@ import java.util.List;
 
 import static com.choucair.question.ValidarInicioSesion.validarInicioSesion;
 import static com.choucair.task.IniciarSesion.iniciarSesion;
-import static com.choucair.util.LoadCredentials.getCredentials;
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static org.hamcrest.Matchers.containsString;
 
 public class LoginStepDefinition extends AndroidDriver {
-    private final List<String> credentials = getCredentials();
+
     private static final Logger LOGGER = Logger.getLogger(LoginStepDefinition.class);
 
     public LoginStepDefinition() throws IOException {
@@ -40,8 +39,6 @@ public class LoginStepDefinition extends AndroidDriver {
         try {
             actor.attemptsTo(
                     iniciarSesion()
-                            .conElUsuario(credentials.get(0))
-                            .yConLaContrasenna(credentials.get(1))
             );
             LOGGER.info("Se inicia sesion");
         } catch (Exception e) {

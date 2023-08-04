@@ -17,6 +17,9 @@ public class PaginaInicioSesion {
     public static final Target MENSAJE_HOLA = Target.the("mensaje confirmacion de inicio de sesion")
             .located(By.id("com.exito.appcompania:id/textView_hello"));
 
+    public static final Target CERRAR_PUBLICIDAD = Target.the("mensaje confirmacion de inicio de sesion")
+            .located(By.id("com.exito.appcompania:id/imageview_close"));
+
 
 
 

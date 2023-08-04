@@ -28,9 +28,9 @@ public class PaginaProductos extends PageObject {
 
     public static Target productoAleatorio(Actor actor) {
         Random random = new Random();
-        int numeroAleatorio = random.nextInt(16) + 1;
+        int numeroAleatorio = random.nextInt(10) + 1;
         while (productos.contains(numeroAleatorio)) {
-            numeroAleatorio = random.nextInt(16) + 1;
+            numeroAleatorio = random.nextInt(10) + 1;
         }
         Target target = Target.the("productoAleatorio")
                 .located(By.xpath("(//span[contains(text(), 'Compra r')])[" + numeroAleatorio + "]"));

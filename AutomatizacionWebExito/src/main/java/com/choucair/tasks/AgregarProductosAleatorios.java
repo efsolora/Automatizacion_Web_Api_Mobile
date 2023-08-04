@@ -7,7 +7,10 @@ import net.serenitybdd.screenplay.actions.JavaScriptClick;
 import net.serenitybdd.screenplay.actions.Scroll;
 import net.serenitybdd.screenplay.conditions.Check;
 import net.serenitybdd.screenplay.targets.Target;
+
 import java.util.Random;
+
+import com.choucair.interactions.Espera;
 
 import static com.choucair.ui.PaginaProductos.*;
 
@@ -16,31 +19,28 @@ public class AgregarProductosAleatorios implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
 
-        for (int i = 0; i < 5; i++) {
-            try {
-                Thread.sleep(15000);
-            } catch (Exception e) {
-            }
+        for (int i = 0; i < 1; i++) {
+            actor.attemptsTo(
+                    Espera.espera(5)
+            );
             Target target = productoAleatorio(actor);
             actor.attemptsTo(
                     Scroll.to(target),
-                            JavaScriptClick.on(target),
-                            JavaScriptClick.on(AGREGAR)
+                    JavaScriptClick.on(target),
+                    JavaScriptClick.on(AGREGAR)
             );
             Random random = new Random();
             int cantidadAleatorio = random.nextInt(2) + 1;
             for (int j = 0; j < cantidadAleatorio; j++) {
                 actor.attemptsTo(
-                                JavaScriptClick.on(CANTIDAD)
+                        JavaScriptClick.on(CANTIDAD)
                 );
             }
-            cantidadDelProducto.add(CANTIDAD_PRODUCTO.resolveFor(actor).getText().trim().substring(0,1));
+            cantidadDelProducto.add(CANTIDAD_PRODUCTO.resolveFor(actor).getText().trim().substring(0, 1));
             actor.attemptsTo(
                     Click.on(CONTINUAR_COMPRANDO)
-
             );
         }
-
     }
 
     public static AgregarProductosAleatorios agregarProductosAleatorios() {

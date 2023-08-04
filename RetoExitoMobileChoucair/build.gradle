@@ -1,25 +1,26 @@
-defaultTasks 'clean','test','aggregate'
-
 buildscript {
     repositories {
-        mavenLocal()
-        mavenCentral()
-        jcenter()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
     dependencies {
-        classpath("net.serenity-bdd:serenity-gradle-plugin:2.0.80")
+        classpath "net.serenity-bdd:serenity-gradle-plugin:3.3.4"
     }
 }
 
+plugins {
+    id 'java'
+}
 
-apply plugin: 'java'
-apply plugin: 'idea'
-apply plugin: 'net.serenity-bdd.aggregator'
+apply plugin: "net.serenity-bdd.serenity-gradle-plugin"
+
+group 'com.inconcert'
+version '1.0-SNAPSHOT'
 
 repositories {
-    mavenLocal()
     mavenCentral()
-    jcenter()
+    maven {url 'https://jitpack.io'}
 }
 
 wrapper {
@@ -27,8 +28,6 @@ wrapper {
     distributionType Wrapper.DistributionType.ALL
 }
 
-compileJava.options.encoding = "UTF-8"
-compileTestJava.options.encoding = "UTF-8"
 ext {
     junitVersion = '5.7.2'
     serenityVersion = '2.2.9'
@@ -36,36 +35,33 @@ ext {
     apachePoiVersion = '3.17'
 }
 
+compileJava.options.encoding = "UTF-8"
+compileTestJava.options.encoding = "UTF-8"
+
 dependencies {
-// Dependencias para poder automatizar con Serenity
-    implementation 'net.serenity-bdd:serenity-junit:2.0.80'
-    implementation 'net.serenity-bdd:serenity-cucumber6:2.6.0'
-    implementation 'net.serenity-bdd:serenity-core:2.0.80'
-    implementation 'org.slf4j:slf4j-simple:1.7.7'
-    implementation 'com.google.guava:guava:23.0'
-    implementation group: 'com.github.javafaker', name: 'javafaker', version: '1.0.2'
-    implementation group: 'net.serenity-bdd', name: 'serenity-screenplay', version: '2.0.80'
-    implementation 'io.appium:java-client:7.5.1'
-    testImplementation 'io.appium:java-client:7.5.1'
-    implementation 'io.github.cdimascio:dotenv-java:2.3.2'
-    implementation group: 'log4j', name: 'log4j', version: '1.2.17'
+
     testImplementation group: 'junit', name: 'junit', version: '4.12'
+    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.8.0'
+
+    implementation "net.serenity-bdd:serenity-cucumber:3.2.4"
+
+    implementation group: 'io.appium', name: 'java-client', version: '6.0.0'
+    implementation group: 'net.serenity-bdd', name: 'serenity-screenplay-webdriver', version: '3.2.4'
+    implementation group: 'net.serenity-bdd', name: 'serenity-junit', version: '3.2.4'
+    implementation group: 'net.serenity-bdd', name: 'serenity-screenplay', version: '3.2.4'
+    implementation group: 'net.serenity-bdd', name: 'serenity-core', version: '3.2.4'
+    implementation group: 'net.serenity-bdd', name: 'serenity-assertions', version: serenityVersion
+    implementation group: 'log4j', name: 'log4j', version: '1.2.17'
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: junitVersion
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: junitVersion
+    implementation group: 'org.apache.poi', name: 'poi', version: '5.0.0'
+    implementation group: 'org.apache.poi', name: 'poi-ooxml', version: '5.0.0'
 
 
 }
-test.finalizedBy(aggregate)
 
-// Para configurar propiedades del comando de ejecucion de pruebas con Gradle
 test {
-//Ignorar los fallos es ejecutar todas las pruebas asi alguna falle
-    ignoreFailures = true
-}
-// Configurar el encoding del proyecto
-tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
+    useJUnit()
 }
 
-// Continue asi falle alguna tarea de Gradle
-gradle.startParameter.continueOnFailure = true
+test.finalizedBy(aggregate)

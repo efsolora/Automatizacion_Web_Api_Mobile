@@ -5,20 +5,11 @@ import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
 import net.thucydides.core.annotations.Managed;
-import org.apache.log4j.PropertyConfigurator;
+import org.apache.log4j.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeOptions;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import static com.google.common.base.StandardSystemProperty.USER_DIR;
-import static com.choucair.util.Log4j.LOG4J_PROPERTIES_FILE_PATH;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorCalled;
-import static net.thucydides.core.webdriver.ThucydidesWebDriverSupport.getDriver;
 
 public class Configuracion {
     private static final String ACTOR = "James Munoz";
@@ -56,8 +47,9 @@ public class Configuracion {
     }
 
     private void setUplog4j() {
-        PropertyConfigurator.configure(USER_DIR.value() + LOG4J_PROPERTIES_FILE_PATH.getValue());
-
+        Logger rootLogger = Logger.getRootLogger();
+        rootLogger.setLevel(Level.INFO);
+        ConsoleAppender stdoutAppender = new ConsoleAppender(new PatternLayout("%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L %m%n"));
+        rootLogger.addAppender(stdoutAppender);
     }
-
 }

@@ -13,12 +13,10 @@ import java.util.List;
 import static com.choucair.question.ValidarProductos.validarProductos;
 import static com.choucair.task.EscogerProductos.escogerProductos;
 import static com.choucair.task.IniciarSesion.iniciarSesion;
-import static com.choucair.util.LoadCredentials.getCredentials;
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static org.hamcrest.Matchers.containsString;
 
 public class CompraStepDefinition extends AndroidDriver {
-    private final List<String> credentials = getCredentials();
     private static final Logger LOGGER = Logger.getLogger(CompraStepDefinition.class);
 
     public CompraStepDefinition() throws IOException {
@@ -42,8 +40,6 @@ public class CompraStepDefinition extends AndroidDriver {
         try {
             actor.attemptsTo(
                     iniciarSesion()
-                            .conElUsuario(credentials.get(0))
-                            .yConLaContrasenna(credentials.get(1))
             );
             LOGGER.info("Se inicia sesion");
         } catch (Exception e) {
@@ -72,7 +68,7 @@ public class CompraStepDefinition extends AndroidDriver {
     public void deberiaVerQueElProductoSeAnadeCorrectamente() {
         try {
             actor.should(
-                    seeThat(validarProductos(), containsString("Celular SAMSUNG Galaxy M13 128 GB Azul"))
+                    seeThat(validarProductos(), containsString("Celular Xiaomi Redmi Note 12 4G 128Gb / 4Ram / 50Mp Azul"))
             );
             LOGGER.info("Hace la comparacion");
         } catch (Exception e) {
