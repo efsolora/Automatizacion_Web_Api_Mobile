@@ -13,7 +13,6 @@ La automatización de pruebas para la tecnología web utiliza Java 11 como lengu
 - Valida que el total de los precios de los productos agregados sea igual al total en el carrito.
 - Valida que las cantidades de los productos agregados sean iguales a las cantidades en el carrito.
 - Valida que el número de productos agregados sea igual al número en el carrito.
-- **Valor agregado**: Se realiza un inicio de sesión en la página de Tiendas Éxito.
 
 ## Tecnología API
 
@@ -34,6 +33,5 @@ La automatización de pruebas para la tecnología móvil utiliza Java 8 como len
 ## Requisitos de Ejecución
 
 - Se recomienda usar Java 8 para la automatización móvil y Java 11 para las automatizaciones web y de APIs.
-- la automatizacion web se ejecuta en Microsoft edge.
 
 *By: James Muñoz*

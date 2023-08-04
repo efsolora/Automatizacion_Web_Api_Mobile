@@ -1,5 +1,6 @@
 package com.choucair.stepdefinitions;
 
+import com.choucair.interactions.Espera;
 import com.choucair.setup.ApiSetUp;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;

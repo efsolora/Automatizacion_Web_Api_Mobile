@@ -1,5 +1,6 @@
 package com.choucair.stepdefinitions;
 
+import com.choucair.interactions.Espera;
 import com.choucair.setup.ApiSetUp;
 import com.choucair.models.User;
 import com.google.gson.Gson;
@@ -16,6 +17,8 @@ import static com.choucair.tasks.DoPut.doPut;
 import static com.choucair.utils.UrlResources.*;
 import static net.serenitybdd.screenplay.rest.questions.ResponseConsequence.seeThatResponse;
 
+
+
 public class ActualizarInfoEmpleadoStepDefinition extends ApiSetUp {
 
     User empleado = new User();
@@ -25,6 +28,7 @@ public class ActualizarInfoEmpleadoStepDefinition extends ApiSetUp {
     @Given("estoy en la pagina de detalles de dummy.restapiexample.com")
     public void estoyEnLaPaginaDeDetallesDeDummyRestapiexampleCom() {
         try {
+            Espera.espera(60).performAs(actor);
             setUp(BASE_API_URL.getValue());
             LOGGER.info("INICIA LA AUTOMATIZACION");
         } catch (Exception e) {

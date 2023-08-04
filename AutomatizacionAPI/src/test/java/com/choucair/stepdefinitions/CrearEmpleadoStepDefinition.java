@@ -1,5 +1,6 @@
 package com.choucair.stepdefinitions;
 
+import com.choucair.interactions.Espera;
 import com.choucair.setup.ApiSetUp;
 import com.choucair.models.User;
 import com.google.gson.Gson;
@@ -25,6 +26,7 @@ public class CrearEmpleadoStepDefinition extends ApiSetUp {
     @Given("estoy en la pagina de creacion API dummy restapiexample")
     public void estoyEnLaPaginaDeCreacionAPIDummyRestapiexample() {
         try {
+            Espera.espera(60).performAs(actor);
             setUp(BASE_API_URL.getValue());
             LOGGER.info("INICIA LA AUTOMATIZACION");
         } catch (Exception e) {

@@ -1,5 +1,6 @@
 package com.choucair.stepdefinitions;
 
+import com.choucair.interactions.Espera;
 import com.choucair.setup.ApiSetUp;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -22,6 +23,7 @@ public class ObtenerInfoEmpleadoStepDefinition extends ApiSetUp {
     @Given("estoy en la pagina de empleados de la API dummy restapiexample")
     public void estoyEnLaPaginaDeEmpleadosDeLaAPIDummyRestapiexample() {
         try {
+            Espera.espera(60).performAs(actor);
             setUp(BASE_API_URL.getValue());
             LOGGER.info("INICIA LA AUTOMATIZACION");
         } catch (Exception e) {
