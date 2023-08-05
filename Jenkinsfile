@@ -9,7 +9,7 @@ pipeline {
 		}
 		stage('test') {
 			steps{
-				sh "cd C:/ProgramData/Jenkins/.jenkins/workspace/jenk/AutomatizacionWebExito"
+				sh "cd C:/ProgramData/Jenkins/.jenkins/workspace/Automatizacion_Web_Api_Mobile/AutomatizacionWebExito"
 				sh "gradlew clean test aggregate"
 				
 			}
