@@ -3,7 +3,7 @@ pipeline {
 	stages {
 		stage('git repo & clean') {
 			steps{
-				sh "rmdir /s /q jenk"
+				//sh "rmdir /s /q jenk"
                 		sh "git clone https://github.com/efsolora/Automatizacion_Web_Api_Mobile"
 			}
 		}
