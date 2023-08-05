@@ -3,8 +3,8 @@ pipeline {
 	stages {
 		stage('git repo & clean') {
 			steps{
-				//bat "rmdir /s /q Prueba"
-				sh "git clone https://github.com/Jamesmb06/Automatizacion_Web_Api_Mobile"
+				sh "rmdir /s /q Automatizacion_Web_Api_Mobile"
+				sh "git clone https://github.com/Jamesmb06/Automatizacion_Web_Api_Mobile.git"
 			}
 		}
 		stage('test') {
