@@ -11,6 +11,6 @@ public class PaginaCategorias extends PageObject {
     public static final Target CATEGORIA = Target.the("Seleccionar la categoria")
             .located(By.xpath("(//p[@id='undefined-nivel2-Dormitorio'])[1]"));
     public static final Target CABECEROS = Target.the("cubiertos")
-            .located(By.xpath("//p[contains(text(),'Spring')]"));
+            .located(By.xpath("//p[contains(text(),'Confort vital')]"));
 
 }

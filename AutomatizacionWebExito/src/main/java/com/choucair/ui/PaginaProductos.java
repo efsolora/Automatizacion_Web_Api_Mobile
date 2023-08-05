@@ -5,8 +5,7 @@ import net.serenitybdd.screenplay.targets.Target;
 import net.thucydides.core.pages.PageObject;
 import org.openqa.selenium.By;
 
-import java.util.ArrayList;
-import java.util.Random;
+import java.util.*;
 
 
 public class PaginaProductos extends PageObject {
@@ -15,6 +14,8 @@ public class PaginaProductos extends PageObject {
     public static ArrayList<String> nombreDelProducto = new ArrayList<>();
     public static ArrayList<String> precioDelProducto = new ArrayList<>();
     public static ArrayList<String> cantidadDelProducto = new ArrayList<>();
+    public static int seleccionCount = 0;
+
     public static final Target CARRITO = Target.the("Boton carrito de compra")
             .located(By.xpath("//a[@class='exito-header-3-x-minicartLink']"));
     public static final Target AGREGAR = Target.the("Boton carrito de compra")
@@ -32,20 +33,25 @@ public class PaginaProductos extends PageObject {
         while (productos.contains(numeroAleatorio)) {
             numeroAleatorio = random.nextInt(10) + 1;
         }
+
         Target target = Target.the("productoAleatorio")
                 .located(By.xpath("(//span[contains(text(), 'Compra r')])[" + numeroAleatorio + "]"));
 
         Target nombre = Target.the("nombreProducto")
                 .located(By.xpath("(//span[@class='vtex-store-components-3-x-productBrand '])[" + numeroAleatorio + "]"));
 
-        Target precio = Target.the("PrecioProducto")
+        Target precio = Target.the("precioProducto")
                 .located(By.xpath("(//div[@class='exito-vtex-components-4-x-PricePDP'])[" + numeroAleatorio + "]"));
 
         nombreDelProducto.add(nombre.resolveFor(actor).getText());
 
-        precioDelProducto.add(precio.resolveFor(actor).getText().trim());
+        precioDelProducto.add(precio.resolveFor(actor).getText().substring(2).replace(".", ""));
 
         productos.add(numeroAleatorio);
+
+        // Incrementar contador de selecciones
+        seleccionCount++;
+
         return target;
 
     }

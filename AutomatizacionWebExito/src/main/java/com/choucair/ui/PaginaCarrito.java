@@ -6,10 +6,10 @@ import org.openqa.selenium.By;
 
 public class PaginaCarrito extends PageObject {
     public static final Target TOTAL_PRODUCTOS = Target.the("total de productos")
-            .located(By.xpath("(//div[@class='totalItems'])"));
+            .located(By.xpath("//div[@class='exito-checkout-io-0-x-totalItemsSeller']"));
 
     public static final Target VALOR_TOTAL = Target.the("valor total del precio")
-            .located(By.xpath("(//span[@data-molecule-summary-item-value='true'])[2]"));
+            .located(By.xpath("(//span[@data-molecule-summary-item-value='true'])[3]"));
 
     public static final Target CAMPO_CORREO=Target.
             the("Campo del correo electronico")
@@ -25,9 +25,10 @@ public class PaginaCarrito extends PageObject {
                 .located(By.xpath("(//span[@data-molecule-product-detail-name-span='true'])["+ posicion +"]"));
         return nombreCarrito;
     }
-    public static Target cantidadCarrito (int posicion) {
+    public static Target cantidadCarrito(int posicion) {
+        posicion += 1;
         Target cantidadCarrito = Target.the("cantidad de productos")
-                .located(By.xpath("(//input[@class='exito-checkout-quantity'])[" + posicion + "]"));
+                .located(By.xpath("(//span[@data-molecule-quantity-und-value='true'])[" + posicion + "]"));
         return cantidadCarrito;
     }
 

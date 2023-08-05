@@ -10,16 +10,16 @@ public class CantidadProducto implements Question<String> {
 
     @Override
     public String answeredBy(Actor actor) {
-
-        return cantidadCarrito(cantidad).resolveFor(actor).getAttribute("value");
+        return cantidadCarrito(cantidad).resolveFor(actor).getText();
     }
 
-    public CantidadProducto withThePosition(int cantidad){
+    public CantidadProducto withThePosition(int cantidad) {
         this.cantidad = cantidad;
         return this;
     }
-    public static CantidadProducto cantidadProducto(){
 
+    public static CantidadProducto cantidadProducto() {
         return new CantidadProducto();
     }
 }
+

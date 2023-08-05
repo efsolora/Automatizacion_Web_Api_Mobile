@@ -7,8 +7,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.apache.log4j.Logger;
 import org.junit.jupiter.api.Assertions;
-import java.io.IOException;
-import java.util.List;
 
 import static com.choucair.questions.CantidadProducto.cantidadProducto;
 import static com.choucair.questions.NombreProducto.nombreProducto;
@@ -25,7 +23,7 @@ import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 public class AnadirProductosStepDefinitions extends Configuracion {
     public static Logger LOGGER = Logger.getLogger(AnadirProductosStepDefinitions.class);
 
-    public AnadirProductosStepDefinitions() throws IOException {
+    public AnadirProductosStepDefinitions() {
     }
 
     @Given("Given que estoy en la pagina de exito")
@@ -35,7 +33,6 @@ public class AnadirProductosStepDefinitions extends Configuracion {
             LOGGER.info("Inicio de la Automatizacion");
             theActorInTheSpotlight().wasAbleTo(
                     new AbrirPaginaInicial()
-                    //navegarAMiCuenta()
             );
         } catch (Exception e) {
             LOGGER.warn(e.getMessage());
@@ -62,31 +59,39 @@ public class AnadirProductosStepDefinitions extends Configuracion {
 
     @Then("se deberian ver los productos en el carrito coinciden con los productos agregados")
     public void seDeberianVerLosProductosEnElCarritoCoincidenConLosProductosAgregados() {
-        // int suma = 0, cantidad = 0;
+        int suma = 0, cantidad = 1;
         try {
             for (int i = 0; i<nombreDelProducto.size(); i++){
-                LOGGER.info(nombreProducto().withThePosition(i).answeredBy(theActorInTheSpotlight()));
-                LOGGER.info(nombreDelProducto.get(i));
-                //suma = Integer.parseInt(precioDelProducto.get(i).substring(2).replace(".",""))*Integer.parseInt(cantidadDelProducto.get(i))+suma;
-                //cantidad += Integer.parseInt(cantidadDelProducto.get(i));
+                // Aserción para verificar el nombre del producto
+                LOGGER.info("Nombre del producto antes" + i + ": " + nombreProducto().withThePosition(i).answeredBy(theActorInTheSpotlight()));
+                LOGGER.info("Nombre del producto despues" + i + ": " + nombreDelProducto.get(i));
+                // Aserción para verificar la cantidad del producto
+                LOGGER.info("Cantidad del producto antes" + i + ": " + cantidadProducto().withThePosition(i).answeredBy(theActorInTheSpotlight()));
+                LOGGER.info("Cantidad del producto despues " + i + ": " + cantidadDelProducto.get(i));
+
+                suma= (Integer.parseInt(precioDelProducto.get(i)) * Integer.parseInt(cantidadDelProducto.get(i))) + suma;
+
+                // Aserción para verificar el total del precio de los productos
+                LOGGER.info("total antes: " + suma);
+                LOGGER.info("Total despues: " + totalPrecioProductos().answeredBy(theActorInTheSpotlight()));
+                // Aserción para verificar el contador de selecciones
+                LOGGER.info("productos seleccionados antes: " + seleccionCount);
+                LOGGER.info("productos seleccionados despues: " + totalProductos().answeredBy(theActorInTheSpotlight()));
+                cantidad+= Integer.parseInt(String.valueOf(seleccionCount));
                 theActorInTheSpotlight().should(
-                        seeThat(nombreProducto().withThePosition(i), equalTo(nombreDelProducto.get(i)))
-                        //seeThat(cantidadProducto().withThePosition(i+1), equalTo(cantidadDelProducto.get(i)))
+                        seeThat(nombreProducto().withThePosition(i), equalTo(nombreDelProducto.get(i))),
+                        seeThat(cantidadProducto().withThePosition(i), equalTo(cantidadDelProducto.get(i)))
                         );
             }
             theActorInTheSpotlight().should(
                     //seeThat(totalPrecioProductos(),equalTo(suma+"")),
                     //seeThat(totalProductos(),equalTo(cantidad+""))
             );
-
-
         }catch (Exception e){
             LOGGER.warn(e.getMessage());
             Assertions.fail();
             quitarDriver();
-
         }
-
     }
 }
 

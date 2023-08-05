@@ -18,9 +18,9 @@ public class AgregarProductosAleatorios implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
 
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 2; i++) {
             actor.attemptsTo(
-                    Espera.espera(5)
+                    Espera.espera(15)
             );
             Target target = productoAleatorio(actor);
             actor.attemptsTo(
