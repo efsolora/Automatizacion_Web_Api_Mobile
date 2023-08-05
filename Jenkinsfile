@@ -19,21 +19,4 @@ pipeline {
             }
         }
     }
-    
-    post {
-        always {
-            // Esta etapa se ejecutará siempre, independientemente del resultado del pipeline.
-            // Aquí puedes agregar acciones de limpieza, notificaciones, etc.
-        }
-        
-        success {
-            // Esta etapa se ejecutará solo si el pipeline se completa con éxito.
-            // Puedes agregar acciones específicas en caso de éxito.
-        }
-        
-        failure {
-            // Esta etapa se ejecutará solo si el pipeline falla.
-            // Puedes agregar acciones de notificación o manejo de errores.
-        }
-    }
 }
